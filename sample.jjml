@@ -1,0 +1,32 @@
+major {
+    SU: Stand Up
+    SC: Side Control
+}
+
+minor {
+    ModGeo: Modified Georgian
+    SLX: Single Leg X
+    SLeg: Single Leg
+    LDrag: Leg Drag
+}
+
+tech (standup) {
+    -SU -> #[cross wrist grip] -> ^ModGeo
+
+    ^ModGeo -> *[yoko sumi gaeshi]{inside foot hooks, outside foot steps between} -> ^SC
+    ^ModGeo -> *[sumi gaeshi]{outside foot steps deep, inside foot kicks over head} -> ^SC
+    _SLeg -> *[yoko sumi gaeshi]
+}
+
+tech (legdrag_passing) {
+    ^LDrag -> #[smashed knee]
+    #[smashed knee] -> ?[no bumpers]
+    #[smashed knee] -> ?[bumpers]
+
+    #[no bumpers] -> #[pitstop (head down)]{post next to the far hip, far knee on the belly > head next to collarbone, far hand underhook} -> ^SC
+    #[bumpers] -> #[pull bumper]{pull bumper out to get control} -> #[pitstop (head up)] -> ^SC
+    #[no bumpers] -> *[smash pass]{drop to near hip and step over with far leg}
+    #[bumpers] -> #[pull bumper] -> #[tripod] -> #[shin control]{slice their knees with your back knee}
+    #[shin control] -{pummel out}> ^SC
+    #[shin control] -> ^MT
+}
