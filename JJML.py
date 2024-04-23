@@ -13,17 +13,40 @@ MAJOR = {
     'fontcolor':'white',
     'style':'filled',
     }
+# ^
 MAJOR_TOP = "#27AE60"
+# !
 MAJOR_BOTTOM = "#E74C3C"
+# ~
 MAJOR_NEUTRAL = "#F1C40F"
 
 MINOR = {
     'shape':'hexagon',
     'style':'filled',
 }
+# ^
 MINOR_TOP = "#58D68D"
+# !
 MINOR_BOTTOM = "#EC7063"
+# ~
 MINOR_NEUTRAL = "#F4D03F"
+
+# #
+CHECKPOINT = {
+    'color': "#E59866"
+}
+# *
+MOVE = {
+    'color': "#76D7C4"
+}
+# ?
+CONDITION = {
+    'color': "#7FB3D5"
+}
+# $
+SUBMISSION = {
+    'color': "#BB8FCE"
+}
 
 symbol_to_key = {
     '^': "TOP_",
@@ -57,8 +80,8 @@ def add_position_if_not_exists(style, name, tip):
         position_nodes.add(name)
 
 def add_step_if_not_exists(style, name, tip):
-    if name not in position_nodes:
-        if position_dict[name][1] == "major":
+    if name not in step_nodes:
+        if style == "*":
             style_dict = MAJOR
             style_dict['color'] = MAJOR_TOP if style == '^' else MAJOR_BOTTOM if style == '!'else MAJOR_NEUTRAL
         elif position_dict[name][1] == "minor":
