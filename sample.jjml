@@ -1,6 +1,7 @@
 major {
     SU: Stand Up
     SC: Side Control
+    MT: Mount
 }
 
 minor {
@@ -26,7 +27,7 @@ tech (legdrag_passing) {
     #[no bumpers] -> #[pitstop (head down)]{post next to the far hip, far knee on the belly > head next to collarbone, far hand underhook} -> ^SC
     #[bumpers] -> #[pull bumper]{pull bumper out to get control} -> #[pitstop (head up)] -> ^SC
     #[no bumpers] -> *[smash pass]{drop to near hip and step over with far leg}
-    #[bumpers] -> #[pull bumper] -> #[tripod] -> #[shin control]{slice their knees with your back knee}
+    #[pull bumper] -> #[tripod] -> #[shin control]{slice their knees with your back knee}
     #[shin control] -{pummel out}> ^SC
     #[shin control] -> ^MT
 }
