@@ -2,6 +2,7 @@ major {
     SU: Stand Up
     SC: Side Control
     MT: Mount
+    HG: Half Guard
 }
 
 minor {
@@ -9,6 +10,8 @@ minor {
     SLX: Single Leg X
     SLeg: Single Leg
     LDrag: Leg Drag
+    SitUpG: Sit Up Guard
+    TKim: T-Kimura
 }
 
 tech (standup) {
@@ -24,10 +27,14 @@ tech (legdrag_passing) {
     #[smashed knee] -> ?[no bumpers]
     #[smashed knee] -> ?[bumpers]
 
-    #[no bumpers] -> #[pitstop (head down)]{post next to the far hip, far knee on the belly > head next to collarbone, far hand underhook} -> ^SC
-    #[bumpers] -> #[pull bumper]{pull bumper out to get control} -> #[pitstop (head up)] -> ^SC
-    #[no bumpers] -> *[smash pass]{drop to near hip and step over with far leg}
+    ?[no bumpers] -> #[pitstop (head down)]{post next to the far hip, far knee on the belly > head next to collarbone, far hand underhook} -> ^SC
+    ?[bumpers] -> #[pull bumper]{pull bumper out to get control} -> #[pitstop (head up)] -> ^SC
+    ?[no bumpers] -> *[smash pass]{drop to near hip and step over with far leg}
     #[pull bumper] -> #[tripod] -> #[shin control]{slice their knees with your back knee}
     #[shin control] -{pummel out}> ^SC
     #[shin control] -> ^MT
+}
+
+tech (sit_up_passing) {
+    -SitUpG -> *[pat the head] -> ^HG -> ?[going for underhook] -{rotate hips}> #[kimura] -> *[roll over] -> ^TKim -> #[]{hands on the mat, top knee to your chest, kick over their head, keep bottom leg around their head, touch top side hip to ground } -> $[finish kimura]
 }

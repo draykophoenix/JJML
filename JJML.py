@@ -33,22 +33,27 @@ MINOR_NEUTRAL = "#F4D03F"
 
 # #
 CHECKPOINT = {
-    'color': "#E59866",
-    'shape': 'box'
+    'fillcolor': "#E59866",
+    'shape': 'box',
+    'style':'filled',
 }
 # *
 MOVE = {
-    'color': "#76D7C4"
+    'fillcolor': "#76D7C4",
+    'shape': 'octagon',
+    'style':'filled',
 }
 # ?
 CONDITION = {
-    'color': "#7FB3D5",
-    'shape': 'diamond'
+    'fillcolor': "#7FB3D5",
+    'shape': 'ellipse',
+    'style':'filled',
 }
 # $
 SUBMISSION = {
-    'color': "#BB8FCE",
-    'shape': 'triangle'
+    'fillcolor': "#BB8FCE",
+    'shape': 'triangle',
+    'style':'filled',
 }
 
 symbol_to_key = {
@@ -75,11 +80,13 @@ def add_position_if_not_exists(id, style, code, tip):
     if code not in position_nodes:
         if position_to_name[code][1] == "major":
             style_dict = MAJOR
-            style_dict['color'] = MAJOR_TOP if style == '^' else MAJOR_BOTTOM if style == '!'else MAJOR_NEUTRAL
+            style_dict['fillcolor'] = MAJOR_TOP if style == '^' else MAJOR_BOTTOM if style == '!'else MAJOR_NEUTRAL
         elif position_to_name[code][1] == "minor":
             style_dict = MINOR
-            style_dict['color'] = MINOR_TOP if style == '^' else MINOR_BOTTOM if style == '!'else MINOR_NEUTRAL
-        dot.node(id, position_to_name[code][0] , style_dict, tooltip= tip)
+            style_dict['fillcolor'] = MINOR_TOP if style == '^' else MINOR_BOTTOM if style == '!'else MINOR_NEUTRAL
+
+        if tip != "": style_dict['color'] = "blue"
+        dot.node(id, position_to_name[code][0] , style_dict, tooltip= tip if tip !="" else None)
         position_nodes.add(id)
 
 def add_step_if_not_exists(id, style, name, tip):
@@ -95,13 +102,14 @@ def add_step_if_not_exists(id, style, name, tip):
             case "$":
                 style_dict = SUBMISSION
 
-        dot.node(id, name, style_dict, tooltip= tip)
+        if tip != "": style_dict['color'] = "blue"
+        dot.node(id, name, style_dict, tooltip= tip if tip !="" else None)
         step_nodes.add(id)
 
 def tech_regex(line):
     style_regex = r"([\^!~#*?$])"
-    name_regex = r"((?:[a-z]+)|(?:\[[a-z ]+\]))"
-    tip_regex = r"(?:{([a-z,;'\"\-\n<> ]+)})?"
+    name_regex = r"((?:[a-z]+)|(?:\[[a-z \(\),]+\]))"
+    tip_regex = r"(?:{([a-z,;'\"\-\n\<\> ]+)})?"
     return re.findall(f"{style_regex}{name_regex}{tip_regex} -{tip_regex}> {style_regex}{name_regex}{tip_regex}", line, overlapped=True, flags=re.IGNORECASE)
 
 def tech_parsing(lines):
@@ -132,7 +140,8 @@ def tech_parsing(lines):
             elif style_b in ['#', '*', '?', '$']:
                 id_b = step_id(name_b, tech_name)
                 add_step_if_not_exists(id_b, style_b, name_b, tip_b)
-            dot.edge(id_a, id_b)
+  
+            dot.edge(id_a, id_b, tooltip= edge_tip, color=("blue" if edge_tip != "" else None))
         i += 1
 
 while i < len(lines):
